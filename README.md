@@ -5,7 +5,7 @@
 [![Transformers](https://img.shields.io/badge/🤗%20Transformers-4.30+-yellow.svg)](https://huggingface.co/docs/transformers/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-> **A novel architecture combining State Space Models (SSMs) with traditional attention mechanisms, featuring adaptive gating, external memory augmentation, and MCP (upcoming in future tests) tool usage for enhanced language model capabilities.**
+> **A novel architecture combining State Space Models (SSMs) with traditional attention mechanisms, featuring adaptive gating, external memory augmentation, and MCP (upcoming in future tests) tool usage for enhanced language model capabilities. This is based off the Gemma 3n Matformer models, where I added gated ssm-layers into the top layers (26-30)**
 
 ---
 
@@ -88,7 +88,7 @@ print(f"Tools used: {result['tool_responses']}")
 | **Improvement** | +23.6% | +25.0% | +12.3% | +73.3% |
 
 ### Gate Activation Patterns
-![Gate Activation Analysis](assets/gate_activation_patterns.png)
+![Gate Activation Analysis](assets/gate_activation_patterns.png) - > Image Upcoming
 
 The model demonstrates intelligent task-specific behavior:
 - **Mathematical queries**: Higher SSM activation (avg: 0.67)
@@ -96,7 +96,7 @@ The model demonstrates intelligent task-specific behavior:
 - **Factual queries**: Moderate SSM usage (avg: 0.38)
 
 ### Memory Usage Efficiency
-![Memory Usage Heatmap](assets/memory_usage_heatmap.png)
+![Memory Usage Heatmap](assets/memory_usage_heatmap.png) - > Image upcoming
 
 Memory bank utilization shows clear patterns:
 - **Hot spots**: Frequently accessed mathematical constants
@@ -304,16 +304,17 @@ pytest tests/
 ## 🌟 Future Enhancements
 
 ### Planned Features
+- [ ] MCP Integration **Aug-Sept**
 - [ ] Multi-modal capabilities (vision + text)
 - [ ] Distributed training support
-- [ ] Additional tool integrations
-- [ ] Quantization for edge deployment
-- [ ] Interactive web demo
+- [ ] Additional tool integrations (MCP extensions) **Sept-Oct**
+- [ ] Quantization deployment **current size is sufficient though**
+- [ ] Web demo
 
 ### Research Directions
-- [ ] Theoretical analysis of hybrid architectures
-- [ ] Comparison with other state-space models
-- [ ] Scaling to larger model sizes
+- [ ] Theoretical analysis of hybrid architectures (SSM-Transformers)
+- [ ] Comparison with other state-space models (Potentially with MCP integration)
+- [ ] Scaling to larger model sizes (Gemma 3n
 - [ ] Domain-specific optimizations
 
 ## 📄 Citation
