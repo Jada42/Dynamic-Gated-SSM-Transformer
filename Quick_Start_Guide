@@ -1,0 +1,99 @@
+# 🚀 Quick Start Guide
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Jada42/Dynamic-Gated-SSM-Transformer.git
+cd Dynamic-Gated-SSM-Transformer
+
+# Install in development mode
+pip install -e .
+
+# Or install with all features
+pip install -e ".[dev,training,memory]"
+```
+
+## Basic Usage
+
+```python
+from dynamic_ssm import CompleteAdaptiveHybridModel
+from transformers import AutoTokenizer
+
+# Initialize model
+model = CompleteAdaptiveHybridModel(
+    base_model_name="google/gemma-2b",
+    num_hybrid_layers=4,
+    gate_bias=-1.0,
+    use_tools=True
+)
+
+# Load tokenizer
+tokenizer = AutoTokenizer.from_pretrained("google/gemma-2b")
+
+# Generate text
+prompt = "Explain quantum computing"
+result = model.generate_with_tools(prompt, tokenizer)
+print(result['text'])
+```
+
+## Key Features
+
+### 1. Adaptive Gating
+```python
+# Check how much SSM vs attention is being used
+stats = model.get_gate_statistics()
+# Low values = more attention, High values = more SSM
+```
+
+### 2. Memory Augmentation
+```python
+# Visualize memory usage
+model.get_memory_usage_heatmap(layer_idx=0)
+```
+
+### 3. Tool Integration
+```python
+# Automatic tool use during generation
+result = model.generate_with_tools(
+    "What's the square root of 625?",
+    tokenizer
+)
+# Model automatically calls calculator tool
+```
+
+### 4. Monitoring
+```python
+# Get performance metrics
+print(model.monitor.get_summary())
+```
+
+## Configuration Options
+
+- `num_hybrid_layers`: Number of top layers to modify (default: 4)
+- `gate_bias`: Initial bias for gates (default: -2.0)
+  - More negative = more attention
+  - Less negative = more SSM
+- `memory_size`: Size of memory bank per layer (default: 512)
+- `use_tools`: Enable MCP tool integration (default: True)
+
+## Examples
+
+See the `examples/` folder for:
+- `basic_usage.py`: Simple generation examples
+- `visualization_demo.py`: Gate and memory visualization
+- `benchmark_comparison.py`: Compare with vanilla model
+
+## Next Steps
+
+1. **Fine-tuning**: See `notebooks/training_guide.ipynb`
+2. **Custom tools**: Extend `MCPInterface` with your own tools
+3. **Memory patterns**: Analyze what the model stores in memory
+
+## Troubleshooting
+
+**OOM Errors**: Reduce `num_hybrid_layers` or `memory_size`
+
+**Slow generation**: This is normal - SSM adds computation. For faster inference, reduce `num_hybrid_layers`
+
+**Gates stuck at 0**: Increase `gate_bias` (e.g., -1.0 instead of -2.0)
