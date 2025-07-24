@@ -14,7 +14,7 @@ def main():
     print("🚀 Loading Dynamic SSM Transformer...")
     
     model = CompleteAdaptiveHybridModel(
-        base_model_name="google/gemma-2b",  # or your preferred model
+        base_model_name="google/gemma-2b",  # or your preferred model, I used for this model the gemma 3n series
         num_hybrid_layers=4,
         gate_bias=-1.0,  # Moderate SSM usage
         memory_size=256,
