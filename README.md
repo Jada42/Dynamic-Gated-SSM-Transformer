@@ -350,4 +350,4 @@ Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) 
 ![GitHub issues](https://img.shields.io/github/issues/julian-adam/adaptive-hybrid-ssm)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/julian-adam/adaptive-hybrid-ssm)
 
-**Built with curiostiy and ❤️ by Julian Adam | 2024**
+**Built with curiostiy by J.Adam | 2024**
